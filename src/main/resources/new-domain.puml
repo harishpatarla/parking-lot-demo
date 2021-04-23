@@ -1,0 +1,56 @@
+@startuml
+
+class ParkingLot {
+
+}
+class Vehicle {
+   String plate;
+	double height;
+	VehicleType type;
+}
+class ParkingRate {
+   hourNumber:int
+   rate:double
+}
+
+
+class ParkingSpot {
+
+}
+
+class ParkingTicket {
+   ticketNumber;
+   ticketIssuedTime;
+}
+
+enum VehicleType {
+ CAR
+ TRUCK
+ BIKE
+ BICYCLE
+}
+
+class Electric {
+
+}
+Electric <|-up- Vehicle
+class Car {}
+Car <|-up- Vehicle
+class Truck {}
+Truck <|-up- Vehicle
+class Van {}
+Van <|-up- Vehicle
+
+'composition - *-' A has an instance of B. B can exist without A
+'aggregation - o-' - A has an instance of B. B can exist without A
+'extension - <|-'
+'use - ->'
+'.> - Extend, Include'
+
+ParkingLot *-down- ParkingFloor
+ParkingLot *-right- ParkingTicket
+ParkingLot *-up- EntrancePanel
+ParkingLot *-left- ExitPanel
+ParkingLot *-down- ParkingRate
+
+@enduml

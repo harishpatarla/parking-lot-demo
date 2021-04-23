@@ -1,0 +1,108 @@
+@startuml
+
+class ParkingLot {
+   -id:int
+   -address:location
+   +addParkingFloor():boolean
+   +addEntrancePanel():boolean
+   +getNewParkingTicket():ParkingTicket
+   +isFull():boolean
+
+}
+ParkingLot *-down- ParkingFloor
+ParkingLot *-right- ParkingTicket
+ParkingLot *-up- EntrancePanel
+ParkingLot *-left- ExitPanel
+ParkingLot *-down- ParkingRate
+
+ParkingFloor *-left- ParkingSpot
+ParkingFloor *-down- ParkingDisplayBoard
+
+'composition - *-'
+'aggregation - o-'
+'extension - <|-'
+'use - ->'
+'.> - Extend, Include'
+class ParkingRate {
+   hourNumber:int
+   rate:double
+}
+class EntrancePanel {
+   -id: string
+   +printTicket(): boolean
+}
+class ExitPanel {
+   -id: string
+   +closeTicket()
+   +processPayment()
+}
+
+interface Person {
+}
+
+class ParkingFloor {
+      -name
+      +addParkingSlot()
+      +updateDisplayBoard()
+      +assignVehicleToSlot()
+      +freeSlot()
+}
+
+class ParkingDisplayBoard {
+   - parkingSpots
+   + updateParkingSpots()
+}
+
+class ParkingSpot {
+
+}
+
+class ParkingTicket {
+   ticketNumber;
+   ticketIssuedTime;
+}
+
+class Payment {
+   - amount
+   - cash/creditCard
+}
+
+class ParkingAttendant {
+   
+}
+
+class Customer {
+
+}
+Customer .. ParkingTicket
+
+enum VehicleType {
+ CAR
+ TRUCK
+ VAN
+ MOTORCYCLE
+}
+
+class Vehicle {
+}
+
+class Electric {
+
+}
+Electric <|-up- Vehicle
+class Car {}
+Car <|-up- Vehicle
+class Truck {}
+Truck <|-up- Vehicle
+class Van {}
+Van <|-up- Vehicle
+
+
+enum ParkingSpotType {
+   COMPACT
+   LARGE
+   HANDICAPPED
+   MOTORCYCLE
+}
+
+@enduml
